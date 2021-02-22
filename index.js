@@ -1,4 +1,19 @@
-const LOGGER_PATH = require('path').join(process.cwd(), 'node_modules', 'next/dist/build/output/log')
+const fs = require('fs');
+const path = require('path');
+const cwd = process.cwd();
+
+let nodeModulesLocation = cwd;
+
+while(!fs.existsSync(path.join(nodeModulesLocation, 'node_modules', 'next/dist/build/output/log'))){
+  nodeModulesLocation = path.resolve(path.join(nodeModulesLocation, ".."));
+  if(nodeModulesLocation === "/"){
+    throw new Error("No node_modules/next/dist/build/output/log found");
+  }
+}
+
+const LOGGER_PATH = path.join(nodeModulesLocation, 'node_modules', 'next/dist/build/output/log');
+
+console.log(LOGGER_PATH);
 
 // eslint-disable-next-line import/no-dynamic-require
 const logger = require(LOGGER_PATH)
