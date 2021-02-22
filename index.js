@@ -4,7 +4,7 @@ const cwd = process.cwd();
 
 let nodeModulesLocation = cwd;
 
-while(!fs.existsSync(path.join(nodeModulesLocation, 'node_modules', 'next/dist/build/output/log'))){
+while(!fs.existsSync(path.join(nodeModulesLocation, 'node_modules', 'next/dist/build/output/log.js'))){
   nodeModulesLocation = path.resolve(path.join(nodeModulesLocation, ".."));
   if(nodeModulesLocation === "/"){
     throw new Error("No node_modules/next/dist/build/output/log found");
